@@ -284,16 +284,18 @@ $all_student=$row1['count(id)'];
     
     </div>  
 
+	
+
 <script>
 var m2 = 0;
 
 function ShowEvents(status,my_index,my_type){
 	
-	var d = new Date();    //new Date('2017','08','25');
+	var d = new Date();    
 	var month_name = ['January','February','March','April','May','June','July','August','September','Octomber','November','December'];	
 		
-	var m1 = d.getMonth(); //0-11
-	var y1 = d.getFullYear(); //2017
+	var m1 = d.getMonth(); 
+	var y1 = d.getFullYear(); 
 		
 	if(status == 'K'){
 		var m3 = m1;
@@ -499,9 +501,8 @@ function get_calendar(day_no,days){
     
 <?php 
 
-$my_index=$_SESSION['index_number'];
 $my_type=$_SESSION['type'];
-
+echo $my_index;
 echo '<script>','ShowEvents("K",'.$my_index.',"'.$my_type.'");','</script>';
 
 ?>         

@@ -4,8 +4,7 @@ if(!isset($_SERVER['HTTP_REFERER'])){
     header('location:../index.php');
     exit;
 }
-?>
-<?php
+
 include_once('../controller/config.php');
 
 $month=$_GET['month'];

@@ -19,8 +19,6 @@ include_once('../controller/config.php');
 	
 	if($email==$email1 && $password==$password1){
 		if($type == "Student"){
-			$msg = "Yes he is Student";
-			
 			$sql1="SELECT * FROM student where email='$email'";	
 			$result1=mysqli_query($conn,$sql1);
 			$row1=mysqli_fetch_assoc($result1);
@@ -33,8 +31,6 @@ include_once('../controller/config.php');
 		}
 		
 		if($type == "Teacher"){
-			$msg ;//
-			
 			$sql1="SELECT * FROM teacher where email='$email'";	
 			$result1=mysqli_query($conn,$sql1);
 			$row1=mysqli_fetch_assoc($result1);
