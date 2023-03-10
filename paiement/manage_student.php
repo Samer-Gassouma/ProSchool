@@ -12,16 +12,19 @@ foreach($qry->fetch_array() as $k => $val){
         <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
         <div id="msg" class="form-group"></div>
         <div class="form-group">
-            <label for="" class="control-label">Id No.</label>
-            <input type="text" class="form-control" name="id_no"  value="<?php echo isset($id_no) ? $id_no :'' ?>" required>
+            <label for="" class="control-label">Id</label>
+            <?php   if(!isset($_GET['id'])){
+                $new_id = $conn->query("SELECT id FROM student order by id desc limit 1")->fetch_array()['id']+1;
+            } ?>
+            <input type="text" class="form-control" name="id_no"  value="<?php echo isset($id) ? $id:$new_id  ?>" required>
         </div>
         <div class="form-group">
             <label for="" class="control-label">Name</label>
-            <input type="text" class="form-control" name="name"  value="<?php echo isset($name) ? $name :'' ?>" required>
+            <input type="text" class="form-control" name="name"  value="<?php echo isset($full_name) ? $full_name :'' ?>" required>
         </div>
         <div class="form-group">
             <label for="" class="control-label">Contact</label>
-            <input type="text" class="form-control" name="contact"  value="<?php echo isset($contact) ? $contact :'' ?>" required>
+            <input type="text" class="form-control" name="contact"  value="<?php echo isset($phone) ? $phone :'' ?>" required>
         </div>
         <div class="form-group">
             <label for="" class="control-label">Email</label>

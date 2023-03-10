@@ -32,11 +32,13 @@
 								<?php
 								
 								$i = 1;
-								//$payments = $conn->query("SELECT p.*,s.full_name as sname, ef.ef_no,s.id FROM payments p inner join student_ef_list ef on ef.id = p.ef_id inner join student s on s.id = ef.student_id order by unix_timestamp(p.date_created) desc ");
-								$payments = $conn->query("SELECT * FROM payments  order by unix_timestamp(date_created) desc ");
+								$payments = $conn->query("SELECT * from payments order by unix_timestamp(date_created) desc");
+
 								if($payments->num_rows > 0):
 								while($row=$payments->fetch_assoc()):
-									$std = $conn->query("SELECT * FROM student where id = ".$row['student_id'])->fetch_array();
+									$ef = $conn->query("SELECT * from student_ef_list where id = ".$row['ef_id'])->fetch_array();
+									
+
 									$paid = $conn->query("SELECT sum(amount) as paid FROM payments where ef_id=".$row['id']);
 									$paid = $paid->num_rows > 0 ? $paid->fetch_array()['paid']:'';
 								?>
@@ -46,13 +48,15 @@
 										<p> <b><?php echo date("M d,Y H:i A",strtotime($row['date_created'])) ?></b></p>
 									</td>
 									<td>
-										<p> <b><?php echo $row['id_no'] ?></b></p>
+										<p> <b><?php echo $row['ef_id'] ?></b></p>
 									</td>
 									<td>
-										<p> <b><?php echo $row['ef_no'] ?></b></p>
+										<p> <b><?php echo $ef['ef_no'] ?></b></p>
 									</td>
 									<td>
-										<p> <b><?php echo ucwords($row['sname']) ?></b></p>
+										<p> <b><?php 
+										$student = $conn->query("SELECT * from student where id = ".$ef['student_id'])->fetch_array();
+										echo ucwords($student['full_name']) ?></b></p>
 									</td>
 									<td class="text-right">
 										<p> <b><?php echo number_format($row['amount'],2) ?></b></p>

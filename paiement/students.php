@@ -46,20 +46,20 @@
 							<tbody>
 								<?php 
 								$i = 1;
-								$student = $conn->query("SELECT * FROM student order by name asc ");
+								$student = $conn->query("SELECT * FROM student order by full_name asc ");
 								while($row=$student->fetch_assoc()):
 								?>
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
 									<td>
-										<p> <b><?php echo $row['id_no'] ?></b></p>
+										<p> <b><?php echo $row['id'] ?></b></p>
 									</td>
 									<td>
-										<p> <b><?php echo ucwords($row['name']) ?></b></p>
+										<p> <b><?php echo ucwords($row['full_name']) ?></b></p>
 									</td>
 									<td class="">
 										 <p><small>Email: <i><b><?php echo $row['email'] ?></i></small></p>
-										 <p><small>Contact #: <i><b><?php echo $row['contact'] ?></i></small></p>
+										 <p><small>Contact #: <i><b><?php echo $row['phone'] ?></i></small></p>
 										 <p><small>Address: <i><b><?php echo $row['address'] ?></i></small></p>
 									</td>
 									<td class="text-center">

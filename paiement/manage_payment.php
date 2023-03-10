@@ -24,7 +24,11 @@ if(isset($_GET['id'])){
 						$balance = $row['total_fee'] - $paid;
 					
 				?>
-				<option value="<?php echo $row['id'] ?>" data-balance="<?php echo $balance ?>" <?php echo isset($ef_id) && $ef_id == $row['id'] ? 'selected' : '' ?>><?php echo  $row['ef_no'].' | '.ucwords($row['sname']) ?></option>
+				<?php 
+					$res01 = $conn->query("SELECT * FROM student_ef_list WHERE student_id = ".$row['id']);
+					$ef_id1 = $res01->fetch_array()['id'];
+				?>
+				<option value="<?php echo $ef_id1 ?>" data-balance="<?php echo $balance ?>" <?php echo isset($ef_id) && $ef_id == $ef_id1 ? 'selected' : '' ?>><?php echo  $row['ef_no'].' | '.ucwords($row['sname']) ?></option>
 				<?php endwhile; ?>
 			</select>
 		</div>
